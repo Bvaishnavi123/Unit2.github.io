@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buttons</title>
+    <style>
+        #container{
+           width: 40%;
+           
+           margin: auto;
+        }
+        button{
+           padding: 10px;
+           border-radius: 6px;
+           border: 0px;
+           margin-left: 20px;
+        }
+        button:nth-child(1)
+        {
+           color: white;
+           background-color:rgb(69, 69, 128) ;
+        }
+        button:nth-child(2)
+        {
+            color: white;
+           background-color:gray ;
+        }
+        button:nth-child(3)
+        {
+            color: white;
+           background-color:green ;
+        }
+        button:nth-child(4)
+        {
+            color: white;
+           background-color:red ;
+        }
+        button:nth-child(5)
+        {
+            color: rgb(0, 0, 0);
+           background-color:yellow ;
+        }
+        button:nth-child(6)
+        {
+            color: rgb(12, 7, 7);
+           background-color:cyan ;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div id="container">
+    <!-- <button>Primary</button>
+    <button>Secondary</button>
+    <button>Sucess</button>
+    <button>danger</button>
+    <button>Warning</button>
+    <button>Info</button> -->
+</div>
+</body>
+</html>
+<script>
+    var obj=[
+        {name:"Primary"},
+        {name:"Seconday"},
+        {name:"Sucess"},
+        {name:"Danger"},
+        {name:"Warning"},
+        {name:"Info"},
+    ];
+   
+   obj.map(function(element){
+       var btn=document.createElement("button");
+       btn.textContent= element.name;
+       btn.style.background=element.bg;
+    
+       document.querySelector('div').append(btn);
+      
+   });
+
+  
+</script>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            margin: auto;
+            width: 400px;
+            /* height: 500px; */
+            border: 1px solid black;
+            border-radius: 6px;
+            text-align: center;
+            padding: 6px;
+            background-color: rgb(82, 83, 156);
+            color: rgb(255, 253, 253);
+        }
+        #container > input{
+            width: 80%;
+            height: 60px;
+            margin-bottom: 5px;
+            border: 2px;
+            border-radius: 6px solid black;
+            padding: 6PX;
+        }
+        h1{
+            font-family: cursive;
+        }
+        button{
+            width: 50%;
+            height: 40PX;
+            border-radius: 9PX;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="container">
+        <h1>BANK DETAILS</h1>
+        <input type="number" id="number" placeholder="Enter your card number">
+        <input type="password" id="cvv" placeholder="Enter your CVV">
+        <input type="text" id="date" placeholder="Enter Expiry date">
+        <input type="date" id="date1" placeholder="Enter date">
+        <input type="text" id="name" placeholder="Enter Name">
+        <button id="pay">PAY</button> 
+    </div>
+    
+</body>
+</html>
+<script>
+ document.getElementById("pay").addEventListener("click", myfuction)
+ function myfuction(){
+     var numbervalue = document.getElementById("number").value
+     var cvvvalue = document.getElementById("cvv").value
+     var datevalue = document.getElementById("date").value
+     var sceondvalue = document.getElementById("date1").value
+     if(numbervalue==""){
+         alert("Error")
+         
+     }
+     else if(cvvvalue==""){
+         alert("Error")
+         
+     }
+     else if(datevalue==""){
+         alert("Error")
+         
+     }
+     else if(sceondvalue==""){
+         alert("Error")
+         
+     }
+     else{
+         window.location.href="otp.html"
+     }
+ }
+  
+ 
+
+</script>

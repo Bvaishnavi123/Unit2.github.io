@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karlo</title>
+    <style>
+        #mainDiv{
+            display: flex;
+            justify-content: space-around;
+
+        }
+        #container{
+            width: 300px;
+            height: 200px;
+            margin: 1px solid red;
+        }
+        #Tickets,#description,input{
+            width: 100%;
+            margin-bottom: 6px;
+        }
+        input{
+            margin-top:15px;
+            height: 30px;
+        }
+        #Tickets{
+            height: 30px;
+        }
+        #TableDescription{
+            width: 500px;
+            height: 500px;
+            /* border: 1px solid rgb(15, 13, 13); */
+        }
+        td{
+            border: 2px solid black;
+            padding: 20px;
+            width: 200px;
+            font-weight: bolder;
+        }
+        #filter,#sort{
+            /* padding: 3px; */
+            height: 40px;
+            margin-bottom: 6px;
+        }
+        #submit{
+            background-color: rgb(64, 64, 139);
+
+            color: wheat;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <h1>Ticket Description</h1>
+
+    <div id="mainDiv">
+    <div id="container">
+       
+    <form>
+        <select name="filter" id="filter" onchange="filterbycat()">
+            <option value="">Filter by category</option>
+            <option value="refund">Refund</option>
+            <option value="missing">Item Missing</option>
+            <option value="status">Order Status</option>
+            <option value="delivery">Delivery</option>
+            <option value="feedback">Feedback</option>
+          
+          
+        </select>
+
+        <select name="sort" id="sort" onchange="sortbynum()">
+            <option value="">Sort By Ticket Number</option>
+            <option value="low">1-10</option>
+            <option value="high">10-1</option>
+            
+          
+          
+        </select>
+        <select name="category" id="Tickets">
+            <option value="refund">Refund</option>
+            <option value="missing">Item Missing</option>
+            <option value="status">Order Status</option>
+            <option value="delivery">Delivery</option>
+            <option value="feedback">Feedback</option>
+        </select>
+        <textarea name="text" id="description" cols="30" rows="10" placeholder="Enter your ticket description briefly"></textarea>
+        <input type="date" id="date">
+        <input type="number" min="1" max="10" placeholder="Ticket Number" id="number">
+        <input type="submit" id="submit">
+
+     
+    </form>
+
+</div>
+     <div id="TableDescription">
+         <table>
+         <thead>
+             <tr>
+                 <td>Category</td>
+                 <td>Description</td>
+                 <td>Date</td>
+                 <td>Ticket Number</td>
+                
+             </tr>
+         </thead>
+         <tbody>
+
+         </tbody>
+
+        </table>
+     </div>
+
+</div>
+</body>
+</html>
+<script>
+   document.querySelector("form").addEventListener("submit",myfun)
+   var karloarray = JSON.parse(localStorage.getItem("karlo")) ||  [];
+   tomaketable(karloarray)
+
+
+   function sortbynum()
+   {
+       selected = document.querySelector("#sort").value;
+
+      
+       karloarray.sort(function(a,b)
+       {
+          if (selected=="low")
+          {
+              return b.Ticketnum - a.Ticketnum
+          }
+          if(selected=="high")
+          {
+              return a.Ticketnum-b.Ticketnum
+          }
+       })
+       tomaketable(karloarray)
+
+   }
+
+   function filterbycat()
+   {
+       Selected = document.querySelector("#filter").value;
+      var list =  karloarray.filter(function(elem)
+       {
+           return elem.Category==Selected;
+       })
+
+       tomaketable(list)
+
+   }
+   function myfun(event)
+   {
+       event.preventDefault();
+       var select = document.getElementById("Tickets").value;
+       var description = document.querySelector("#description").value;
+       var date = document.querySelector("#date").value;
+       var Number = document.getElementById("number").value;
+
+      var object = {Category:select , Description:description , Date :date, Ticketnum:Number}
+      
+      karloarray.push(object);
+      localStorage.setItem("karlo",JSON.stringify(karloarray))
+      tomaketable(karloarray)
+   }
+  
+   function tomaketable(karloarray)
+   {
+
+    document.querySelector("tbody").innerHTML=""
+   karloarray.map(function(element)
+   {
+     var tr = document.createElement("tr")
+
+     var td1 = document.createElement("td")
+     td1.textContent=element.Category;
+
+     var td2 = document.createElement("td")
+     td2.textContent=element.Description;
+
+     var td3 = document.createElement("td")
+     td3.textContent=element.Date;
+
+     var td4 = document.createElement("td")
+     td4.textContent=element.Ticketnum
+
+     tr.append(td1,td2,td3,td4)
+
+     document.querySelector("tbody").append(tr)
+   })
+
+}
+</script>

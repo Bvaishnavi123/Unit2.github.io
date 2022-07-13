@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>layout</title>
+    <style>
+        body{
+            background-color: black;
+        }
+       #container{
+           width:90%;
+       
+           background-color:rgb(242,238,233) ;
+           margin: auto;
+           display: grid;
+           grid-template-columns: repeat(3,1fr);
+           grid-template-rows: repeat(3,150px);
+           grid-gap: 20px;
+           padding: 20px;
+           margin-top: 5%;
+          
+
+       }
+       #container>div{
+        
+        /* border: 1px solid red; */
+          border-radius: 20px;
+          background-color: white;
+          box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+       }
+       #container>div>div{
+           display: flex;
+           justify-content: space-between;
+           padding: 0 10px;
+       }
+      #container h3{
+          color:rgb(235, 182, 92); ;
+      }
+      p{
+          padding: 0 10px;
+      }
+      @media only screen and (min-width:0px) and (max-width:480px) {
+          #container{
+            grid-template-columns: repeat(1,1fr);
+            grid-template-rows: repeat(9,150px);
+            background-color:rgb(242,238,233) ;
+          }
+      }
+      @media only screen and (min-width:481px) and (max-width:768px) {
+          #container{
+            grid-template-columns: repeat(2,1fr);
+            grid-template-rows: repeat(5,150px);
+            background-color:rgb(242,238,233) ;
+          }
+      }
+           
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div>
+             <div>
+                <h2>Cappuccaino</h2>
+                <h3>$49</h3>
+            </div>
+            <p>Usage of internate become more common due to rapid adavance</p>
+            
+        </div>
+        <div>
+             <div>
+                <h2>Espresso</h2>
+                <h3>$49</h3>
+            </div>
+            <p>Usage of internate become more common due to rapid adavance</p>
+        </div>
+        <div>
+             <div>
+                <h2>Cappuccaino</h2>
+                <h3>$49</h3>
+            </div>
+            <p>Usage of internate become more common due to rapid adavance</p>
+        </div>
+        <div>
+             <div>
+                <h2>Macchiato</h2>
+                <h3>$49</h3>
+            </div>
+            <p>Usage of internate become more common due to rapid adavance</p>
+        </div>
+        <div>
+             <div>
+                <h2>Mocha</h2>
+                <h3>$49</h3>
+            </div>
+            <p>Usage of internate become more common due to rapid adavance</p>
+        </div>
+        <div>
+             <div>
+                <h2>Coffe Latte</h2>
+                <h3>$49</h3>
+            </div>
+            <p>Usage of internate become more common due to rapid adavance</p>
+        </div>
+        <div>
+             <div>
+                <h2>Piccolo Latte</h2>
+                <h3>$49</h3>
+            </div>
+            <p>Usage of internate become more common due to rapid adavance</p>
+        </div>
+        <div>
+             <div>
+                <h2>Ristretto</h2>
+                <h3>$49</h3>
+            </div>
+            <p>Usage of internate become more common due to rapid adavance</p>
+        </div>
+        <div>
+             <div>
+                <h2>Affogato</h2>
+                <h3>$49</h3>
+            </div>
+            <p>Usage of internate become more common due to rapid adavance</p>
+        </div>
+    </div>
+</body>
+</html>

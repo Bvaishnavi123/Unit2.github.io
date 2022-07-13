@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #container {
+        margin: auto;
+        background-color: black;
+        color: white;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 10px;
+        border-radius: 6px;
+      }
+      #right {
+        width: 25%;
+        display: flex;
+        margin-right: 20px;
+        justify-content: space-between;
+        padding: 20px 0px 0px 0px;
+      }
+      #left {
+        margin-left: 20px;
+      }
+      #home{
+          /* width: 900px; */
+          /* height: 400px; */
+          /* border: 1px solid green; */
+          margin: auto;
+          margin-top: 30px;
+          display: grid;
+          grid-template-columns: repeat(4,1fr);
+          gap: 10px;
+         
+      }
+      #home > img{
+          border: 2px solid grey;
+          height: 350px;
+          border-radius: 15px;
+          padding: 20px;
+          width: 80%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="left">
+        <h2>MEGHAWIDTH</h2>
+      </div>
+      <div id="right">
+        <div id="signup">Sign Up</div>
+        <div id="login">Log In</div>
+        <div id="men">Men</div>
+        <div id="women">Women</div>
+        <div id="product">Product</div>
+      </div>
+
+    
+    </div>
+    <div id="home">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRGQoi043j57RtZwiBUoxH3NuFV2-7PFCd9w&usqp=CAU"
+          alt=""
+        />
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDDnXyJZCBaLqKqSZRoFuJ3auS7uan5m37Aw&usqp=CAU"
+          alt=""
+        />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6LWrcGhPXnGHmy7Qt3umBe_yC56lE5JwGoQ&usqp=CAU" alt="">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7u18SjYrdax1e8lTK_wtOC3Myx3QlJl-T6Q&usqp=CAU" alt="">
+      </div>
+  </body>
+</html>
+
+<script>
+
+  // Make EventListner For Each And Every div
+  document.querySelector("#signup").addEventListener("click", function () {
+    window.location.href = "Signup.html";
+  });
+
+  document.querySelector("#login").addEventListener("click", function () {
+    window.location.href = "Login.html";
+  });
+  document.querySelector("#men").addEventListener("click", function () {
+    window.location.href = "men.html";
+  });
+  document.querySelector("#women").addEventListener("click", function () {
+    window.location.href = "women.html";
+  });
+  document.querySelector("#product").addEventListener("click", function () {
+    window.location.href = "product.html";
+  });
+</script>

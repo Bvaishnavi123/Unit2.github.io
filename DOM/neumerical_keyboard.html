@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>keyboard</title>
+    <style>
+       #keyboard{
+           margin: auto;
+           width: 350px;
+           height: 450px;
+           /* border: 1px solid red; */
+           display: grid;
+           grid-template-columns: repeat(3,100px);
+           grid-template-rows: repeat(4,100px);
+           grid-gap: 10px;
+           justify-content: center;
+          border: 1px solid grey;
+          border-radius: 6px;
+           margin-top: 5px;
+           padding: 5px 0px 0px 0px;
+           box-shadow: rgba(179, 19, 19, 0.15) 1.95px 1.95px 2.6px;
+       }
+       #output{
+           width:350px ;
+           height: 70px;
+           border-radius: 6px;
+           padding:  10px 0px 0px 10px;
+           margin: auto;
+           box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+           font-size: 40px;
+
+           
+       }
+       #keyboard>button{
+           background-color: black;
+           color: white;
+           font-size: 20px;
+           
+           border: 0px;
+           border-radius: 6px;
+           padding: 6px;
+       }
+    </style>
+</head>
+<body>
+    <div id="output"></div>
+    <div id="keyboard">
+        <button onclick="press(1)" >1</button>
+        <button onclick="press(2)" >2</button>
+        <button onclick="press(3)" >3</button>
+        <button onclick="press(4)" >4</button>
+        <button onclick="press(5)" >5</button>
+        <button onclick="press(6)" >6</button>
+        <button onclick="press(7)" >7</button>
+        <button onclick="press(8)" >8</button>
+        <button onclick="press(9)" >9</button>
+        <button onclick="press(0)" >0</button>
+        <button onclick="clearAll()" >Clear</button>
+    </div>
+</body>
+</html>
+<script>
+   
+    function press(num)
+    {   var bag="";
+        bag=bag+num;
+        document.querySelector("#output").append(bag);
+    }
+    function clearAll(){
+        var bag=""
+        document.querySelector("#output").textContent=bag;
+        
+    }
+</script>

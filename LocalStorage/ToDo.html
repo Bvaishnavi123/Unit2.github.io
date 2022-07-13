@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo</title>
+    <style>
+    tr,th,td{
+        border: 2px solid black;
+        padding:10px;
+        
+    }
+    button{
+        background-color: black;
+        color: white;
+        padding: 10px;
+    }
+    </style>
+</head>
+<body>
+    <form>
+    <input type="text"  id="itemName" placeholder="Enter Your Item"  >
+    <input type="number"  id="qty" placeholder="Enter Quantity">
+    <input type="submit" value="ToDoList" id="submitlist">
+</form>
+ <table>
+     <thead>
+         <tr>
+         <th >Item name</th>
+         <th>Quantity</th>
+          <th> <button id="delete">Delete Item</button> </th>
+        </tr>
+     </thead>
+     <tbody>
+
+     </tbody>
+ </table>
+</body>
+</html>
+<script>
+ document.querySelector("form").addEventListener("submit",toDolist)
+ var task=JSON.parse(localStorage.getItem("TODO")) || [] ;
+//  CreatTable(task);
+
+ window.addEventListener("load",function(){
+     CreatTable(task);
+ })
+ function toDolist(event)
+ {
+     event.preventDefault();
+     var items= document.querySelector("#itemName").value
+     var quan = document.querySelector("#qty").value
+
+     var toDoOBJ = {Item_Name:items , Quantity:quan}
+     task.push(toDoOBJ)
+
+      localStorage.setItem("TODO", JSON.stringify(task));
+     CreatTable(task);
+ }
+
+ function CreatTable(task){
+
+    document.querySelector("tbody").innerHTML ="";
+     task.map(function(element,index){
+     
+      
+        var tr = document.createElement("tr");
+
+        var td1 = document.createElement("td")
+        td1.textContent= element.Item_Name;
+
+
+        var td2 = document.createElement("td")
+        td2.textContent = element.Quantity;
+        var td3 = document.createElement("td")
+        td3.textContent = "Delete"
+        td3.addEventListener("click", function(){
+            deleteitem(index);
+        })
+
+        tr.append(td1,td2,td3)
+
+        document.querySelector("tbody").append(tr);
+        
+     })
+   function deleteitem(index){
+      task.splice(index,1);
+      localStorage.setItem("TODO", JSON.stringify(task));
+      CreatTable(task)
+   }
+  
+  
+
+
+ }
+</script>

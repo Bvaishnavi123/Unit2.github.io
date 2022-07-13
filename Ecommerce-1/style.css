@@ -1,0 +1,21 @@
+#container {
+    margin: auto;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 6px;
+   
+  }
+  #right {
+    width: 25%;
+    display: flex;
+    margin-right: 20px;
+    justify-content: space-between;
+    padding: 20px 0px 0px 0px;
+  }
+  #left {
+    margin-left: 20px;
+  }

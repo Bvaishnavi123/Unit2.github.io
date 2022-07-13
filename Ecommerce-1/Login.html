@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      input {
+        margin: 20px;
+        padding: 10px;
+        border-radius: 6px;
+      }
+      #container {
+        width: 30%;
+        border: 1px solid rgb(30, 43, 30);
+        /* height: 150px; */
+        margin: auto;
+        padding: 20px;
+        background-color: rgb(243, 225, 192);
+        border-radius: 6px;
+      }
+      label {
+        font-size: x-large;
+        font-family: cursive;
+      }
+      #submit {
+        background-color: rgb(116, 116, 216);
+        color: white;
+        border: 0px;
+        padding: 20px;
+        border-radius: 6px;
+        width: 30%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <form>
+        <label>UserName :</label>
+        <input
+          type="text"
+          name="yext"
+          id="userName"
+          placeholder="Enter Your Username"
+        />
+        <br />
+        <label>Password :</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Enter your password"
+        />
+
+        <input type="submit" id="submit" value="LogIn" />
+      </form>
+    </div>
+  </body>
+</html>
+
+<script>
+  document.querySelector("form").addEventListener("submit", myfunction);
+  // getting signup data from local storage
+  var registerData = JSON.parse(localStorage.getItem("detailsdata")) ;
+//   console.log(registerData);
+
+  function myfunction(event) {
+    event.preventDefault();
+   
+    var user = document.querySelector("#userName").value;
+    var pass = document.querySelector("#password").value;
+
+    for(var i=0;i<registerData.length;i++)
+
+    // console.log(registerData[i].Email)
+    // ccomparing user sign up  data with logi in data
+    {
+        if(registerData[i].Email ==  user && registerData[i].Password==pass)
+        {
+            alert("LogIn Sucessfully")
+            // login successfully go to Homepage
+            window.location.href="Homepage.html"
+        }
+        else{
+            alert("You need to signup first");
+            break;
+        }
+    }
+
+  }
+</script>

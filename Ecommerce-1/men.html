@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <style>
+        #container1{
+          width: 80%;
+          margin: auto;
+          display: grid;
+          grid-gap: 10px;
+         
+          grid-template-columns:repeat(4,1fr)
+          
+          
+          
+
+        }
+        #sub{
+            display: flex;
+            justify-content: space-around;
+        }
+        #deals{
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+            text-align: center;
+        }
+        #linethrough{
+            text-decoration: line-through;
+        }
+        #btn{
+            padding: 10px;
+            background-color: black;
+            color: white;
+            border: 0px;
+            border-radius: 6px;
+        }
+        #goto{
+            padding: 10px;
+            width: 20%;
+            background-color: cadetblue;
+            color: rgb(250, 243, 243);
+            border: 0px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+        #price{
+            padding: 10px;
+            width: 10%;
+            background-color: cadetblue;
+            color: rgb(250, 243, 243);
+            border: 0px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+        #names{
+            padding: 10px;
+            width: 15%;
+            background-color: cadetblue;
+            color: rgb(250, 243, 243);
+            border: 0px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+        #brandfilter{
+            padding: 10px;
+            width: 15%;
+            background-color: cadetblue;
+            color: rgb(250, 243, 243);
+            border: 0px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        @media only screen and (min-width:0px) and (max-width:480px) {
+          #container1{
+            grid-template-columns: repeat(1,1fr);
+           
+          }
+      }
+      @media only screen and (min-width:481px) and (max-width:768px) {
+          #container1{
+            grid-template-columns: repeat(2,1fr);
+            
+          }
+      }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="left">
+          <h2>MEGHAWIDTH</h2>
+        </div>
+        <div id="right">
+          <div id="signup">Sign Up</div>
+          <div id="login">Log In</div>
+          <div id="men">Men</div>
+          <div id="women">Women</div>
+          <div id="product">Product</div>
+        </div>
+  
+      
+      </div>
+    <button id="goto">GoToCart</button>
+    <!-- Sorting by price  -->
+    <select name="price" id="price" onchange="sortingprice()">
+        <option value="">Sort By Price</option>
+        <option value="high">High To Low</option>
+        <option value="low">Low to High</option>
+    </select>
+    <!--Sorting by names  -->
+    <select name="names" id="names" onchange="sortingnames()">
+        <option value="">Sort By Name</option>
+        <option value="high">High To Low</option>
+        <option value="low">Low To High</option>
+    </select>
+    <!-- Filtering using brand name -->
+    <select name="brandname" id="brandfilter" onchange="filternybrand()">
+        <option value="">Filter by Brand</option>
+        <option value="reebok">Reebok</option>
+        <option value="nike">Nike</option>
+        <option value="adidas">Adidas</option>
+    </select>
+    <div id="container1">
+
+    </div>
+</body>
+</html>
+<script>
+
+     // getting data from local storage
+    var men = JSON.parse(localStorage.getItem("mensData"))
+    var cartArr = JSON.parse(localStorage.getItem("cartdata")) || [];
+    datadisplay(men);
+
+    // Filter by brands 
+    function filternybrand(){
+        var selected = document.querySelector("#brandfilter").value;
+       var filterlist = men.filter(function(elem)
+        {
+            return elem.brandName==selected
+        })
+
+        datadisplay(filterlist);
+    }
+    // sorting Function by names Function
+
+    function sortingnames(){
+        var selectedname = document.querySelector("#names").value;
+        if(selectedname=="high")
+        {
+            // Decending Order
+            men.sort(function(a,b){
+               if(a.name > b.name)
+               {
+                   return -1;
+               }
+               if(a.name < b.name)
+               {
+                   return 1
+               }
+            })
+        }
+        if(selectedname=="low")
+        {
+            // Accending Order
+        
+                men.sort(function(a,b){
+               if(a.name > b.name)
+               {
+                   return 1;
+               }
+               if(a.name < b.name)
+               {
+                   return -1
+               }
+            })
+        
+        }
+
+        datadisplay(men);
+
+    }
+
+    // Sorting Function for price
+    function sortingprice(){
+        var selected = document.querySelector("#price").value;
+        if(selected=="high")
+        {
+            // Decending Order
+            men.sort(function(a,b){
+                return b.price - a.price
+            })
+        }
+        if(selected=="low")
+        {
+            // Accending Order
+            men.sort(function(a,b)
+            {
+                return a.price - b.price
+            })
+        }
+        // console.log(men)
+        datadisplay(men);
+    }
+
+    function datadisplay(men)
+    {
+        // make container1 empty because whenever we sort data its get sorted one after other
+        document.querySelector("#container1").innerHTML="";
+        men.map(function(elem){
+        var div = document.createElement("div")
+        div.setAttribute("id","deals")
+        var image = document.createElement("img")
+        image.setAttribute("src",elem.image_url)
+        var name = document.createElement("p")
+        name.textContent=elem.name
+
+        var div2 = document.createElement("div");
+        div2.setAttribute("id","sub")
+        var price = document.createElement("p")
+        price.textContent=elem.price;
+
+        var sticker = document.createElement("p")
+        sticker.textContent=elem.strikedoffprice;
+        sticker.setAttribute("id","linethrough")
+
+        var brand = document.createElement("div")
+        brand.textContent="Brand Name"+" : "+ elem.brandName;
+
+        var btn = document.createElement("button")
+        btn.textContent="Add To Cart"
+        btn.setAttribute("id","btn")
+        // Add to cart function
+        btn.addEventListener("click",function(){
+            addtocart(elem)
+        });
+      
+        div2.append(price,sticker)
+        div.append(brand,image,name,div2,btn)
+
+        document.getElementById("container1").append(div)
+
+    });
+        
+    }
+    
+   
+    //  mapping it in body
+    // men.map(function(elem){
+    //     var div = document.createElement("div")
+    //     div.setAttribute("id","deals")
+    //     var image = document.createElement("img")
+    //     image.setAttribute("src",elem.image_url)
+    //     var name = document.createElement("p")
+    //     name.textContent=elem.name
+
+    //     var div2 = document.createElement("div");
+    //     div2.setAttribute("id","sub")
+    //     var price = document.createElement("p")
+    //     price.textContent=elem.price;
+
+    //     var sticker = document.createElement("p")
+    //     sticker.textContent=elem.strikedoffprice;
+    //     sticker.setAttribute("id","linethrough")
+
+    //     var btn = document.createElement("button")
+    //     btn.textContent="Add To Cart"
+    //     btn.setAttribute("id","btn")
+    //     // Add to cart function
+    //     btn.addEventListener("click",function(){
+    //         addtocart(elem)
+    //     });
+      
+    //     div2.append(price,sticker)
+    //     div.append(image,name,div2,btn)
+
+    //     document.getElementById("container1").append(div)
+
+    // });
+    //  making go to cart part
+     function addtocart(elem){
+        //  console.log(elem);
+        // store it to local storage take empty array 
+       cartArr.push(elem);
+       localStorage.setItem("cartdata", JSON.stringify(cartArr) )
+    //    whenever we do refresh our cart will start from 0 to resolve this probleam we intialize our cart with local storage data
+       alert("Added Succefully");
+
+     }
+
+     document.getElementById("goto").addEventListener("click",function()
+     {
+         window.location.href="cart.html"
+     })
+    
+</script>
+<script src="navbarjava.js"></script>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #container {
+        width: 80%;
+        margin: auto;
+        display: grid;
+        grid-gap: 10px;
+
+        grid-template-columns: repeat(4, 1fr);
+      }
+      #sub {
+        display: flex;
+        justify-content: space-around;
+      }
+      #deals {
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+          rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+        text-align: center;
+      }
+      #linethrough {
+        text-decoration: line-through;
+      }
+      #btn {
+        padding: 10px;
+        background-color: black;
+        color: white;
+        border: 0px;
+        border-radius: 6px;
+      }
+      #details,
+      #no {
+        text-align: right;
+        font-family: cursive;
+      }
+      #checkout {
+        display: flex;
+        justify-content: space-between;
+      }
+      .data {
+        width: 500px;
+        
+        /* height: 200px; */
+       
+      }
+      .data1 {
+        /* width: 500px; */
+         margin-top: 20PX;
+        /* height: 200px; */
+       
+      }
+      #pro{
+          margin-top: 6px;
+          padding: 10px;
+          width: 212px;
+      }
+      #btn1{
+        padding: 10px;
+        background-color: black;
+        color: white;
+        border: 0px;
+        border-radius: 6px;
+
+      }
+
+      @media only screen and (min-width:0px) and (max-width:480px) {
+          #container{
+            grid-template-columns: repeat(1,1fr);
+           
+          }
+          .data {
+        width: 200px;
+        
+        /* height: 200px; */
+       
+      }
+      #sub {
+        display: flex;
+        justify-content: space-evenly;
+      }
+          
+      }
+      @media only screen and (min-width:481px) and (max-width:768px) {
+          #container{
+            grid-template-columns: repeat(2,1fr);
+            
+          }
+        
+          .data {
+        width: 300px;
+        
+        /* height: 200px; */
+       
+      }
+      #sub {
+        display: flex;
+        justify-content: space-evenly;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="checkout">
+      <div class="data1">
+        <button id="btn">PAYTIME</button>
+        <button id="btn1" onclick="myfun()">APPLY PROMO CODE</button>
+      
+        <input type="text" name="text" id="pro" placeholder="Enter Promo Code & click on Apply" >  
+      </div>
+      <div class="data">
+        <h3 id="details"></h3>
+        <h3 id="no"></h3>
+      </div>
+    </div>
+    <div id="container"></div>
+  </body>
+</html>
+<script>
+  // Get cartdata from local storage
+  var cart = JSON.parse(localStorage.getItem("cartdata"));
+  //  console.log(cart);
+  // mapping it to body
+  cart.map(function (elem) {
+    var div = document.createElement("div");
+    div.setAttribute("id", "deals");
+    var image = document.createElement("img");
+    image.setAttribute("src", elem.image_url);
+    var name = document.createElement("p");
+    name.textContent = elem.name;
+
+    var div2 = document.createElement("div");
+    div2.setAttribute("id", "sub");
+    var price = document.createElement("p");
+    price.textContent = elem.price;
+
+    var sticker = document.createElement("p");
+    sticker.textContent = "$" + elem.strikedoffprice;
+    sticker.setAttribute("id", "linethrough");
+    div2.append(price, sticker);
+    div.append(image, name, div2);
+
+    document.getElementById("container").append(div);
+  });
+  //  Find Total price in cart
+  var total = cart.reduce(function (ac, cv) {
+    return ac + cv.price;
+  }, 0);
+
+  document.getElementById(
+    "details"
+  ).textContent = `The Total Amount is ${total}`;
+
+  function myfun(){
+    var screen = document.querySelector("#pro").value;
+     if(screen == "masai30")
+     {
+       var retotal = total - (total*(30/100)) 
+       console.log(retotal)
+       
+       document.getElementById(
+    "details"
+  ).textContent = `The Total Amount is ${retotal}`;
+     }
+     else{
+       alert("Invalid Promo code");
+       
+     }
+  }
+
+  var num = cart.length;
+  document.getElementById(
+    "no"
+  ).textContent = `The Number of items you have purchased is ${num}`;
+  
+  document.querySelector("#btn").addEventListener("click", function(){
+      alert("Thank You for Purchesing");
+      window.location.href="success.html"
+  })
+
+ 
+ 
+</script>

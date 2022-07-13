@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marriage</title>
+  </head>
+  <body>
+    <select name="gender" id="gender">
+      <option value="Male">M</option>
+      <option value="Female">F</option>
+    </select>
+    <input
+      type="Number"
+      placeholder="Enter your birth year"
+      value=""
+      id="date"
+    />
+    <br />
+    <button onclick="validornot()">Enter</button>
+  </body>
+</html>
+
+<script>
+  function validornot() {
+    var gender = document.getElementById("gender").value;
+    // console.log(gender)
+    var current_year = 2022;
+    var year_of_birth = document.querySelector("#date").value;
+    var legal_age_female = 20;
+    var legal_age_male = 22;
+    var age=current_year - year_of_birth;
+    if(gender=="Male")
+    {
+        if(age<legal_age_male)
+        {
+            alert("Ivalid Legat_Age to get Marry!");
+        }
+        if(age>=legal_age_male){
+            alert("Valid Legat_Age to get Marry");
+        }
+    }
+    if(gender=="Female")
+    {
+        if(age<legal_age_female)
+        {
+            alert("Ivalid Legat_Age to get Marry!");
+        }
+        if(age>=legal_age_female){
+            alert("Valid Legat_Age to get Marry!");
+        }
+    }
+  }
+</script>

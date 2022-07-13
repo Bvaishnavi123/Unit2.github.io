@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bozaz</title>
+    <style>
+      body {
+        display: flex;
+      }
+      h1 {
+        color: cornflowerblue;
+        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+      }
+      h2 {
+        margin-bottom: 0px;
+        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+      }
+      #container {
+        width: 25%;
+
+        height: 200px;
+      }
+      #category1,
+      #name1,
+      #Description,
+      #Price {
+        width: 80%;
+        height: 20px;
+      }
+      #add {
+        padding: 20px;
+        background-color: rgb(99, 99, 212);
+        color: cornsilk;
+        border: 0px;
+        margin-top: 5px;
+        border-radius: 6px;
+      }
+      tr,th,td{
+          border: 2px solid black;
+          padding: 5px;
+
+      }
+     
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h1>ADD PRODUCT</h1>
+      <h2>Category</h2>
+      
+      <select name="category1" id="category1" value="" >
+        <option value="electronics">Electronics</option>
+        <option value=" furniture">Furniture</option>
+        <option value="home">Home</option>
+        <option value="appliance">Appliance</option>
+        <option value=" books">Books</option>
+      </select>
+      <h2>Title</h2>
+      <input type="text" id="name1"  placeholder="Enter your product name" />
+      <h2>Discription</h2>
+      <textarea name="text" id="Discription" cols="30" rows="10"placeholder="Enter Description of product you want" ></textarea>
+      <h2>Price</h2>
+      <input type="number" name="" id="Price"  placeholder="Enter Price" />
+
+      <button id="add">Add Cart</button>
+    </div>
+    <div id="subcontainer">
+      <h1>Product Info</h1>
+      <table>
+        <thead>
+          <tr>
+           
+            <th>Category</th>
+            <th>Title </th>
+            <th>Description </th>
+            <th>Price </th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
+<script>
+    document.querySelector("#add").addEventListener("click", adddis)
+    var task= JSON.parse(localStorage.getItem("Bozaz"))||[];
+    tomake(task)
+
+  
+    function adddis()
+    {
+       var cat = document.getElementById("category1").value
+       var head = document.querySelector("#name1").value;
+       var DescriptionOFproduct = document.querySelector("#Discription").value;
+       var priceOfProduct = document.querySelector("#Price").value;
+       var obj = {Category:cat,Title:head,Description:DescriptionOFproduct,Price:priceOfProduct};
+       task.push(obj)
+       
+       localStorage.setItem("Bozaz",  JSON.stringify(task))
+
+       tomake(task);
+
+    }
+
+    function tomake(task){
+        document.querySelector("tbody").innerHTML="";
+        task.map(function(elem){
+            var tr=document.createElement("tr")
+
+            
+            
+            var td1 = document.createElement("td")
+            td1.textContent = elem.Category
+
+            var td2 = document.createElement("td")
+            td2.textContent = elem.Title
+
+            var td3 = document.createElement("td")
+            td3.textContent = elem.Description
+
+            var td4 = document.createElement("td")
+            td4.textContent = elem.Price
+
+            tr.append(td1,td2,td3,td4)
+            document.querySelector("tbody").append(tr);
+           
+            
+        })
+      
+    
+    }
+</script>

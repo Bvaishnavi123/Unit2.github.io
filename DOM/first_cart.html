@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cart</title>
+    <style>
+      #container {
+        width: 900px;
+        /* height: 200px; */
+        /* border: 1px solid green; */
+        display: flex;
+        margin: auto;
+        flex-wrap: wrap;
+        /* background-color: rgb(2, 2, 2); */
+      }
+      #container > div {
+        width: 200px;
+        height: 250px;
+        /* border: 1px solid rgb(13, 27, 13); */
+        margin: 10px;
+        background-color: white;
+        /* border-radius: 6px; */
+        border: 1px solid rgb(204, 201, 201);
+        
+      }
+      img {
+        width: 200px;
+        height: 150px;
+      }
+      p {
+        padding-left: 5px;
+      }
+      .sub {
+        display: flex;
+      }
+      h3,
+      h4 {
+        margin-top: 0px;
+        padding-left: 5px;
+      }
+      h4 {
+        margin-left: 30px;
+        text-decoration: line-through;
+        color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <!-- <div>
+            <img src="https://preview.colorlib.com/theme/eiser/img/product/inspired-product/xi1.jpg.pagespeed.ic.mkSk-Af1ka.webp" alt="">
+            <p>LATEST MEN'S SNEAKER</p>
+            <div class="sub">
+                <h3>$25.00</h3>
+                <h4>$95.00</h4>
+            </div>
+        </div>
+       <div>
+        <img src="https://preview.colorlib.com/theme/eiser/img/product/inspired-product/xi4.jpg.pagespeed.ic.kmiQW8I5wx.webp" alt="">
+        <p>LATEST MEN'S SNEAKER</p>
+        <div class="sub">
+            <h3>$25.00</h3>
+            <h4>$95.00</h4>
+        </div>
+       </div>
+       <div>
+        <img src="https://preview.colorlib.com/theme/eiser/img/product/inspired-product/xi2.jpg.pagespeed.ic.uBrpABaJqp.webp" alt="">
+        <p>LATEST MEN'S SNEAKER</p>
+        <div class="sub">
+            <h3>$35.00</h3>
+            <h4>$100.00</h4>
+        </div>
+       </div>
+       <div>
+        <img src="https://preview.colorlib.com/theme/eiser/img/product/inspired-product/xi3.jpg.pagespeed.ic.iO_cFEPy2K.webp" alt="">
+        <p>LATEST MEN'S SNEAKER</p>
+        <div class="sub">
+            <h3>$35.00</h3>
+            <h4>$.00</h4>
+        </div>
+       </div> -->
+    </div>
+  </body>
+</html>
+
+<script>
+  var data = [
+    {
+      imgUrl:
+        "https://preview.colorlib.com/theme/eiser/img/product/inspired-product/xi1.jpg.pagespeed.ic.mkSk-Af1ka.webp",
+      name: "LATEST MEN’S SNEAKER",
+      price: "$25.00",
+      strikedOffPrice: "$95.00",
+    },
+    {
+      imgUrl:
+        "https://preview.colorlib.com/theme/eiser/img/product/inspired-product/xi2.jpg.pagespeed.ic.uBrpABaJqp.webp",
+      name: "LATEST MEN’S SNEAKER",
+      price: "$35.00",
+      strikedOffPrice: "$100.00",
+    },
+    {
+      imgUrl:
+        "https://preview.colorlib.com/theme/eiser/img/product/inspired-product/xi3.jpg.pagespeed.ic.iO_cFEPy2K.webp",
+      name: "LATEST MEN’S SNEAKER",
+      price: "$35.00",
+      strikedOffPrice: "$100.00",
+    },
+    {
+      imgUrl:
+        "https://preview.colorlib.com/theme/eiser/img/product/inspired-product/xi4.jpg.pagespeed.ic.kmiQW8I5wx.webp",
+      name: "LATEST MEN’S SNEAKER",
+      price: "$35.00",
+      strikedOffPrice: "$100.00",
+    },
+  ];
+
+  data.map(function (element) {
+    var box = document.createElement("div");
+    var pakage = document.createElement("div");
+    //   package.setAttribute("class",".sub")
+    pakage.style.display = "flex";
+   
+
+    var image = document.createElement("img");
+    image.setAttribute("src", element.imgUrl);
+
+    var para = document.createElement("p");
+    para.textContent = element.name;
+
+    var price_label = document.createElement("h3");
+    price_label.textContent = element.price;
+
+    var stick = document.createElement("h4");
+    stick.textContent = element.strikedOffPrice;
+
+    pakage.append(price_label, stick);
+    box.append(image, para, pakage);
+
+    document.getElementById("container").append(box);
+  });
+</script>
